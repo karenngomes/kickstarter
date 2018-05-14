@@ -84,9 +84,8 @@ public class Project {
 		System.out.println("What do you want edit?");
 		System.out.println("[1] Basics information");
 		System.out.println("[2] Rewards");
-		System.out.println("[3] Story");
-		System.out.println("[4] About You");
-		System.out.println("[5] Account");
+		System.out.println("[3] About You");
+		System.out.println("[4] Account");
 		
 		int option = input.nextInt();
 		
@@ -98,12 +97,8 @@ public class Project {
 				editRewards();
 				break;
 			case 3: 
-				editStory();
 				break;
 			case 4:
-				
-				break;
-			case 5:
 				
 				break;
 			default:
@@ -123,17 +118,15 @@ public class Project {
 		switch(option) {
 			case 1: 
 				System.out.println("These words will help people find your project, so choose them wisely!");
+				String newName = input.nextLine();
+				this.setName(newName);
 				break;
 			case 2: 
-				editRewards();
+				System.out.println("Give people a sense of what you’re doing. Skip “Help me” and focus on what you’re making.");
+				String newDescription = input.nextLine();
+				this.setDescription(newDescription);
 				break;
 			case 3: 
-				editStory();
-				break;
-			case 4:
-				
-				break;
-			case 5:
 				
 				break;
 			default:
@@ -143,10 +136,6 @@ public class Project {
 	}
 	
 	public void editRewards() {
-		
-	}
-	
-	public void editStory() {
 		
 	}
 	

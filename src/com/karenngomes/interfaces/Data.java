@@ -10,7 +10,7 @@ public class Data {
 	
 	//ArrayList<Message> messages;
 	
-	public void addProject(Project project) {
+	public void addProjectInData(Project project) {
 		Data.projectsAll.add(project);
 	}
 	

@@ -88,17 +88,30 @@ public class User {
 	public void setCountry(Countries country) {
 		this.country = country;
 	}
-	public ArrayList<Project> getCreatedProjects() {
-		return createdProjects;
+	
+	public void getCreatedProjects() {
+		try {
+			for(Project project : this.createdProjects) {
+				System.out.println(project.getName());
+			}
+		} catch(IndexOutOfBoundsException err) {
+			System.out.println("You don't create any project yet.");
+		}
 	}
-	public void setCreatedProjects(ArrayList<Project> createdProjects) {
-		this.createdProjects = createdProjects;
+	public void setCreatedProjects(Project createdProject) {
+		this.createdProjects.add(createdProject);
 	}
-	public ArrayList<Project> getSupportedProjects() {
-		return supportedProjects;
+	public void getSupportedProjects() {
+		try {
+			for(Project project : this.supportedProjects) {
+				System.out.println(project.getName());
+			}
+		} catch(IndexOutOfBoundsException err) {
+			System.out.println("You don't support any project yet.");
+		}
 	}
-	public void setSupportedProjects(ArrayList<Project> supportedProjects) {
-		this.supportedProjects = supportedProjects;
+	public void setSupportedProjects(Project supportedProject) {
+		this.supportedProjects.add(supportedProject);
 	}
 	public ArrayList<Message> getMessages() {
 		return messages;

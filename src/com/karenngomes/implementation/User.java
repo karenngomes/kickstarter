@@ -1,13 +1,14 @@
-package com.karenngomes.Implementation;
+package com.karenngomes.implementation;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class User {
-	private String name;
+	private String firstName;
+	private String lastName;
 	private boolean age18;
 	private String biography;
 	private String email;
-	private String login;
 	private String password;
 	private String website;
 	private Countries country;
@@ -19,12 +20,36 @@ public class User {
 	
 	//constructor
 	
-	public String getName() {
-		return name;
+	public User(String firstName, String lastName, String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		System.out.println("Created account!");
 	}
-	public void setName(String name) {
-		this.name = name;
+	
+	
+	public String getFirstName() {
+		return firstName;
 	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
 	public boolean isAge18() {
 		return age18;
 	}
@@ -42,12 +67,6 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
 	}
 	public String getPassword() {
 		return password;
@@ -97,5 +116,38 @@ public class User {
 	public void setFollowing(ArrayList<User> following) {
 		this.following = following;
 	}
+	
+	public void viewProfile() {
+		
+		Scanner input = new Scanner(System.in);
+		
+		int flag;
+		
+		do {
+			System.out.printf("\n ======== WELCOME, %s! ========\n\n", this.getFirstName());
+			System.out.println("- Type your option -");
+			System.out.println("[1] My Account\n" +
+								"[2] My projects\n" +
+								"[3] Messages" +
+								"[4] Following" +
+								"[5] Followers" +
+								"[0] Exit");
+			
+			int option = input.nextInt();
+			flag = option;
+			
+			switch(option) {
+			case 2:
+				if(this.createdProjects.size() == 0)
+					System.out.println("You don't have any project yet. Create one!");
+				else
+					this.getCreatedProjects();
+				break;
+			}
+			
+
+		} while(flag != 0);
+	}
+	
 		
 }

@@ -1,4 +1,4 @@
-package com.karenngomes.Implementation;
+package com.karenngomes.implementation;
 
 public class Message {
 	

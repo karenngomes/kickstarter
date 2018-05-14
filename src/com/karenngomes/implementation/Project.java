@@ -1,9 +1,10 @@
-package com.karenngomes.Implementation;
+package com.karenngomes.implementation;
 
 import java.time.Period;
 import java.util.ArrayList;
 
 public class Project {
+	private static int idTotal;
 	private int id;
 	private String name;
 	private String description;
@@ -15,6 +16,13 @@ public class Project {
 	private ArrayList<User> supporters;
 	
 	//constructor
+	Project(String name, User responsible, Categories category) {
+		this.id = idTotal;
+		this.name = name;
+		this.responsible = responsible;
+		this.category = category;
+		idTotal++;
+	}
 	
 	public String getName() {
 		return name;
@@ -64,7 +72,6 @@ public class Project {
 	public void setSupporters(ArrayList<User> supporters) {
 		this.supporters = supporters;
 	}
-	
 	
 	
 }

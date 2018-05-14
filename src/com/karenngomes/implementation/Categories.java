@@ -1,4 +1,4 @@
-package com.karenngomes.Implementation;
+package com.karenngomes.implementation;
 
 public enum Categories {
 	ART(1), COMICS(2), CRAFTS(3), DANCE(4), DESIGN(5), FASHION(6), 

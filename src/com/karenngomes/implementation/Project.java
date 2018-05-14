@@ -2,6 +2,7 @@ package com.karenngomes.implementation;
 
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Project {
 	private static int idTotal;
@@ -71,6 +72,82 @@ public class Project {
 	}
 	public void setSupporters(ArrayList<User> supporters) {
 		this.supporters = supporters;
+	}
+	
+	static Scanner input = new Scanner(System.in);
+	
+	public void viewProject() {
+		
+	}
+	
+	public void editProject() {
+		System.out.println("What do you want edit?");
+		System.out.println("[1] Basics information");
+		System.out.println("[2] Rewards");
+		System.out.println("[3] Story");
+		System.out.println("[4] About You");
+		System.out.println("[5] Account");
+		
+		int option = input.nextInt();
+		
+		switch(option) {
+			case 1: 
+				editBasicInformation();
+				break;
+			case 2: 
+				editRewards();
+				break;
+			case 3: 
+				editStory();
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+			default:
+				break;
+		
+		}
+	}
+	
+	public void editBasicInformation() {
+		System.out.println("Which basic information do you want edit?");
+		System.out.println("[1] Project Title");
+		System.out.println("[2] Short Blurb");
+		System.out.println("[3] Category");
+		
+		int option = input.nextInt();
+		
+		switch(option) {
+			case 1: 
+				System.out.println("These words will help people find your project, so choose them wisely!");
+				break;
+			case 2: 
+				editRewards();
+				break;
+			case 3: 
+				editStory();
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+			default:
+				break;
+		
+		}
+	}
+	
+	public void editRewards() {
+		
+	}
+	
+	public void editStory() {
+		
 	}
 	
 	

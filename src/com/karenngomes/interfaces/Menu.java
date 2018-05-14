@@ -13,8 +13,6 @@ public class Menu {
 	User user1 = new User("Karen", "Gomes", "kngs@ic.ufal.br", "karen123");
 	User user2 = new User("Nich", "Araujo", "paz@ic.ufal.br", "nich123");
 	
-	
-	
 	public void mainMenu() {
 		
 		Data.users.add(user1);

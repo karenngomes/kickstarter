@@ -116,6 +116,8 @@ public class User {
 	public void setFollowing(ArrayList<User> following) {
 		this.following = following;
 	}
+
+	static Scanner input = new Scanner(System.in);
 	
 	public void viewProfile() {
 		
@@ -149,5 +151,44 @@ public class User {
 		} while(flag != 0);
 	}
 	
+	public void editAccount() {
+		
+		System.out.printf("\nHello, %s.\nWhat do you want edit?\n", this.getFirstName());
+		System.out.println("[1] First name");
+		System.out.println("[2] Last name");
+		System.out.println("[3] Email");
+		System.out.println("[4] Password");
+		System.out.println("[5] Your biography");
+		
+		int option = input.nextInt();
+		
+		switch(option) {
+			case 1: 
+				String firstName = input.nextLine();
+				this.setFirstName(firstName);
+				break;
+			case 2: 
+				String lastName = input.nextLine();
+				this.setLastName(lastName);
+				break;
+			case 3: 
+				String email = input.next();
+				this.setEmail(email);
+				break;
+			case 4:
+				System.out.print("Type the new password: ");
+				String password = input.next();
+				this.setPassword(password);
+				break;
+			case 5:
+				String aboutYou = input.next();
+				this.setBiography(aboutYou);
+				break;
+			default:
+				break;
+		
+		}
+		
+	}
 		
 }

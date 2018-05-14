@@ -48,7 +48,9 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+	public String getFullName() {
+		return this.getFirstName() + " " + this.getLastName();
+	}
 
 	public boolean isAge18() {
 		return age18;
@@ -104,17 +106,30 @@ public class User {
 	public void setMessages(ArrayList<Message> messages) {
 		this.messages = messages;
 	}
-	public ArrayList<User> getFollowers() {
-		return followers;
+	public void getFollowers() {
+		try {
+			for(User followers : this.followers) {
+				System.out.println(followers.getFullName());
+			}
+		} catch(IndexOutOfBoundsException err) {
+			System.out.println("This user doesn't have any followers yet.");
+		}
+		
 	}
-	public void setFollowers(ArrayList<User> followers) {
-		this.followers = followers;
+	public void setFollowers(User follower) {
+		this.followers.add(follower);
 	}
-	public ArrayList<User> getFollowing() {
-		return following;
+	public void getFollowing() {
+		try {
+			for(User following : this.following) {
+				System.out.println(following.getFullName());
+			}
+		} catch(IndexOutOfBoundsException err) {
+			System.out.println("This user doesn't have any following yet.");
+		}
 	}
-	public void setFollowing(ArrayList<User> following) {
-		this.following = following;
+	public void setFollowing(User following) {
+		this.following.add(following);
 	}
 
 	static Scanner input = new Scanner(System.in);

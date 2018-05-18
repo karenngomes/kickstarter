@@ -1,7 +1,4 @@
 package com.karenngomes.interfaces;
-import java.util.Scanner;
-
-import com.karenngomes.implementation.*;
 
 public class Main {
 

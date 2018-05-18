@@ -1,19 +1,20 @@
 package com.karenngomes.implementation;
 
-public class Message {
+public class Message implements Arquivable {
 	
 	private static int idTotal;
 	private int id;
 	private User sender;
 	private User receiver;
-	private String mensagem;
-		
+	private String message;
+	private boolean read = false;
+	
 	public Message(User sender, User receiver, String message) {
 		super();
-		this.id = ++idTotal;
+		this.id = idTotal++;
 		this.sender = sender;
 		this.receiver = receiver;
-		this.mensagem = message;
+		this.message = message;
 	}
 	
 	public static int getIdTotal() {
@@ -56,13 +57,35 @@ public class Message {
 	}
 
 
-	public String getMensagem() {
-		return mensagem;
+	public String getMessage() {
+		return message;
 	}
 
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
+	public boolean isRead() {
+		return read;
+	}
+
+	public void setRead(boolean read) {
+		this.read = read;
+	}
+	
+	@Override
+	public boolean close() {
+		// TODO Auto-generated method stub
+		this.read = true;
+		return this.read;
+	}
+
+	@Override
+	public boolean reOpen() {
+		// TODO Auto-generated method stub
+		this.read = false;
+		return !this.read;
+	}
+	
 }

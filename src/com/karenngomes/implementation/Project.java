@@ -4,26 +4,52 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Project {
-	private static int idTotal;
-	private int id;
-	private String name;
-	private String description;
-	private User responsible;
-	private ArrayList<User> contributors;
-	private Categories category;
-	private Period timeCampaign;
-	//private double campaignGoalValue;
-	private ArrayList<User> supporters;
+public abstract class Project implements Arquivable {
+	protected static int idTotal;
+	protected int id;
+	protected String name;
+	protected String description;
+	protected User responsible;
+	protected ArrayList<User> contributors;
+	protected Categories category;
+	protected Period timeCampaign;
+	protected ArrayList<User> supporters;
+	protected ArrayList<Comment> comments;
+	protected boolean closed;
 	
-	//constructor
+	static Scanner input = new Scanner(System.in);
+	
+	Project() {
+		contributors = new ArrayList<User>();
+		supporters = new ArrayList<User>();
+		comments = new ArrayList<Comment>();
+	}
+	
+	Project(User responsible) {
+		this.id = idTotal++;
+		this.responsible = responsible;
+		
+		System.out.print("Project name: ");
+		String projectName = input.nextLine();
+		this.name = projectName;
+		System.out.print("Category: ");
+		this.category.viewCategories();
+		int categoryValue = input.nextInt();
+		while(categoryValue < 1 && categoryValue > 15) {
+			System.out.println("Invalid value! Try again: ");
+			categoryValue = input.nextInt();
+		}
+		this.setCategory(categoryValue);
+		
+	}	
+	
 	Project(String name, User responsible, Categories category) {
-		this.id = idTotal;
+		this.id = idTotal++;
 		this.name = name;
 		this.responsible = responsible;
 		this.category = category;
-		idTotal++;
 	}
+	
 	
 	public String getName() {
 		return name;
@@ -40,104 +66,57 @@ public class Project {
 	public User getResponsible() {
 		return responsible;
 	}
-	public void setResponsible(User responsible) {
-		this.responsible = responsible;
+	public void getContributors() {
+		try {
+			for(User contributor : this.contributors) {
+				System.out.println(contributor.getFullName());
+			}
+		} catch(IndexOutOfBoundsException err) {
+			System.out.println("This project doesn't have any contributor yet.");
+		}
 	}
-	public ArrayList<User> getContributors() {
-		return contributors;
-	}
-	public void setContributors(ArrayList<User> contributors) {
-		this.contributors = contributors;
+	public void setContributors(User contributor) {
+		this.contributors.add(contributor);
 	}
 	public Categories getCategory() {
 		return category;
 	}
-	public void setCategory(Categories category) {
-		this.category = category;
-	}
-	public Period getTimeCampaign() {
-		return timeCampaign;
-	}
-	public void setTimeCampaign(Period timeCampaign) {
-		this.timeCampaign = timeCampaign;
-	}
-	/*public double getCampaignGoalValue() {
-		return campaignGoalValue;
-	}
-	public void setCampaignGoalValue(double campaignGoalValue) {
-		this.campaignGoalValue = campaignGoalValue;
-	}*/
-	public ArrayList<User> getSupporters() {
-		return supporters;
-	}
-	public void setSupporters(ArrayList<User> supporters) {
-		this.supporters = supporters;
+	public void setCategory(int categoryValue) {
+		this.category.setValue(categoryValue);
 	}
 	
-	static Scanner input = new Scanner(System.in);
+	public int getTimeCampaign() {
+		return timeCampaign.getDays();
+	}
+	public void setTimeCampaign(int timeCampaign) {
+		this.timeCampaign = Period.ofDays(timeCampaign);
+	}
+
+	public void getSupporters() {
+		try {
+			for(User supporter : this.supporters) {
+				System.out.println(supporter.getFullName());
+			}
+		} catch(IndexOutOfBoundsException err) {
+			System.out.println("This project doesn't have any supporter yet.");
+		}
+	}
+	public void setSupporters(User supporter) {
+		this.supporters.add(supporter);
+	}
+	public boolean isClosed() {
+		return closed;
+	}
+
+	public void setClosed(boolean closed) {
+		this.closed = closed;
+	}
 	
 	public void viewProject() {
-		
+		System.out.println("Project name: " + this.getName());
+		System.out.println("Project description: " + this.getDescription());
+		System.out.println("Category: " + this.getCategory());
+		System.out.println("Time campaign: " + this.getTimeCampaign());
 	}
-	
-	public void editProject() {
-		System.out.println("What do you want edit?");
-		System.out.println("[1] Basics information");
-		System.out.println("[2] Rewards");
-		System.out.println("[3] About You");
-		System.out.println("[4] Account");
-		
-		int option = input.nextInt();
-		
-		switch(option) {
-			case 1: 
-				editBasicInformation();
-				break;
-			case 2: 
-				editRewards();
-				break;
-			case 3: 
-				break;
-			case 4:
-				
-				break;
-			default:
-				break;
-		
-		}
-	}
-	
-	public void editBasicInformation() {
-		System.out.println("Which basic information do you want edit?");
-		System.out.println("[1] Project Title");
-		System.out.println("[2] Short Blurb");
-		System.out.println("[3] Category");
-		
-		int option = input.nextInt();
-		
-		switch(option) {
-			case 1: 
-				System.out.println("These words will help people find your project, so choose them wisely!");
-				String newName = input.nextLine();
-				this.setName(newName);
-				break;
-			case 2: 
-				System.out.println("Give people a sense of what you’re doing. Skip “Help me” and focus on what you’re making.");
-				String newDescription = input.nextLine();
-				this.setDescription(newDescription);
-				break;
-			case 3: 
-				
-				break;
-			default:
-				break;
-		
-		}
-	}
-	
-	public void editRewards() {
-		
-	}
-	
 	
 }

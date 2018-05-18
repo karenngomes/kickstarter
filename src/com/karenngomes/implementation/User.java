@@ -18,10 +18,16 @@ public class User {
 	private ArrayList<User> followers;
 	private ArrayList<User> following;
 	
-	//constructor
+	User() {
+		createdProjects = new ArrayList<Project>();
+		supportedProjects = new ArrayList<Project>();
+		messages = new ArrayList<Message>();
+		followers = new ArrayList<User>();
+		following = new ArrayList<User>();
+	}
+	
 	
 	public User(String firstName, String lastName, String email, String password) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -149,34 +155,59 @@ public class User {
 	
 	public void viewProfile() {
 		
-		Scanner input = new Scanner(System.in);
-		
-		int flag;
-		
 		do {
 			System.out.printf("\n ======== WELCOME, %s! ========\n\n", this.getFirstName());
 			System.out.println("- Type your option -");
 			System.out.println("[1] My Account\n" +
 								"[2] My projects\n" +
-								"[3] Messages" +
-								"[4] Following" +
-								"[5] Followers" +
+								"[3] Following\n" +
+								"[4] Followers\n" +
+								"[5] Edit Account\n" +
 								"[0] Exit");
 			
 			int option = input.nextInt();
-			flag = option;
 			
 			switch(option) {
-			case 2:
-				if(this.createdProjects.size() == 0)
-					System.out.println("You don't have any project yet. Create one!");
-				else
-					this.getCreatedProjects();
-				break;
+				case 0:
+					return;
+				case 1:
+					myAccount();
+					break;
+				case 2:
+					if(createdProjects.size() == 0) 
+						System.out.println("You don't have any project yet.");
+					else
+						getCreatedProjects();
+					
+					System.out.println("Do you want create one now? [Y/N]");
+					if(input.nextLine().toUpperCase().equals("Y")) {
+						Project newProject = new ProjectInProgress(this);
+						setCreatedProjects(newProject);
+					}
+					
+					break;
+				case 3:
+					getFollowing();
+					break;
+				case 4:
+					getFollowers();
+					break;
+				case 5:
+					editAccount();
+				default:
+					System.out.println("Invalid Option! Try again.");
+					break;
 			}
 			
 
-		} while(flag != 0);
+		} while(true);
+	}
+	
+	public void myAccount() {
+		System.out.println("First name: " + this.getFirstName());
+		System.out.println("Last name: " + this.getLastName());
+		System.out.println("Email: " + this.getEmail());
+		System.out.println("My biography: " + this.getBiography());
 	}
 	
 	public void editAccount() {
